@@ -1,0 +1,20 @@
+services:
+  downloader:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: novel-downloader
+    image: novel_downloader:latest
+    environment:
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - RABBIT_HOST=${RABBIT_HOST}
+      - OUTPUT_FOLDER=/app/downloads
+    ports:
+      - "3873:80"
+    volumes:
+      - ${OUTPUT_FOLDER}:/app/downloads
+    restart: unless-stopped
+
