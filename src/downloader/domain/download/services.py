@@ -8,7 +8,7 @@ from downloader.domain.novel.services import (
     get_novel_by_slug_or_exception,
     get_novel_chapters,
 )
-from downloader.infrastructure.scripts.generate_epub import generate
+from downloader.infrastructure.epub import generate
 
 
 def execute_download(jobId: int):
