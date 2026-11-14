@@ -6,6 +6,7 @@ from ebooklib import epub
 
 from downloader.config.settings import env
 from downloader.domain.novel.models import Chapter, Novel
+from downloader.shared.helpers import timer
 
 COVER_NAME = 'cover.jpg'
 
@@ -20,6 +21,7 @@ def cover(slug: str) -> bytes:
     
     return cover_bytes
 
+@timer('EPUB processing')
 def generate(novel: Novel, chapters: list[Chapter], job_id: int) -> Path:
     if not len(chapters):
         raise Exception("Must have atleast one chapter")

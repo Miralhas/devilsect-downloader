@@ -15,6 +15,9 @@ Download every novel available in devilsect as an EPUB.
     > mv .env.example .env
     - update the variables accordingly
 
+2. Virtual environment and libraries
+    > uv sync
+
 2. run the project
 > uv run downloader
 

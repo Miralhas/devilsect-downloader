@@ -19,8 +19,8 @@ class DownloadJob(SQLModel, table=True):
     start: int
     end: int
     status: JobStatus
-    path: str
-    error: str
+    path: str | None
+    error: str | None
     exclude: str | None
     created_at: Optional[datetime]
 

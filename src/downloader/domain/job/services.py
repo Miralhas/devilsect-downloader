@@ -12,9 +12,8 @@ def get_job_by_id_or_exception(id: int) -> DownloadJob:
 
     return job
 
-
 def clean_job(job: DownloadJob) -> DownloadJob:
-    if (job.is_pending()):
+    if job.is_pending():
         job.error = "Job was pending for more than 24 hours"
 
     job.status = JobStatus.CLEANED
