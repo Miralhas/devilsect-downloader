@@ -19,10 +19,10 @@ class DownloadJob(SQLModel, table=True):
     start: int
     end: int
     status: JobStatus
-    path: str | None
-    error: str | None
-    exclude: str | None
-    created_at: Optional[datetime]
+    path: str | None = None
+    error: str | None = None
+    exclude: str | None = None
+    created_at: datetime | None = None
 
     def exclude_to_array(self) -> list[str]:
         if not self.exclude:
