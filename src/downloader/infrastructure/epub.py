@@ -2,9 +2,9 @@ import requests
 from ebooklib import epub
 
 from downloader.domain.novel.models import Chapter, Novel
-from downloader.shared.helpers import timer
+from downloader.infrastructure.storage import delete_epub, epub_path
 from downloader.shared.constants import ONE_MINUTE_IN_SECONDS
-from downloader.infrastructure.storage import epub_path, delete_epub
+from downloader.shared.helpers import timer
 
 COVER_NAME = "cover.jpg"
 

@@ -17,6 +17,7 @@ class Config(CustomBaseSettings):
     MYSQL_DATABASE: str
 
     RABBIT_HOST: str
+    RABBIT_WORKERS: int
 
     OUTPUT_FOLDER: Path
 
