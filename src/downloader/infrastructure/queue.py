@@ -3,6 +3,7 @@ import time
 from multiprocessing import Pool
 
 import pika
+from sqlalchemy.exc import OperationalError
 
 from downloader.config.logging import logger
 from downloader.config.settings import env
@@ -32,9 +33,11 @@ def on_download_queue_message(ch, method, properties, body):
         logger.info(f"Download request for job of id: [{message}]")
         execute_download(int(message))
         ch.basic_ack(delivery_tag=method.delivery_tag)
+    except OperationalError as mysqlEx:
+        logger.error(f"MYSQL ERROR: {mysqlEx}")
+        ch.basic_reject(delivery_tag=method.delivery_tag)
     except Exception as ex:
         logger.error(f"INTERNAL ERROR: {ex}")
-
 
 def download_consumer(position: int):
     try:

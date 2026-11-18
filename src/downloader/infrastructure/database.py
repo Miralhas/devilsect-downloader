@@ -9,7 +9,11 @@ MYSQL_DB = env.MYSQL_DATABASE
 
 mysql_url = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
 
-engine = create_engine(mysql_url)
+engine = create_engine(
+    url=mysql_url,
+    pool_pre_ping=True,
+    pool_recycle=1800,
+)
 
 
 def create_db_and_tables():
